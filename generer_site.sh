@@ -19,7 +19,12 @@ case "$commande" in
 			html_images="$html_images<img src='$fichier'>"
 		done
 		sed -i "/id=\"images\"/a $html_images" "$repertoire_cible/index.html"
+		echo "Site généré dans le répertoire $repertoire_cible"
 		fi
 	else echo "Fichier manquant"
 	fi;;
+    "--help" )
+        echo "AIDE D'UTILISATION DU SCRIPT\nbuild <cible> : Générer un site avec images dans le répertoire cible";;
+    * )
+	echo "Commande non reconnue. Entrer la commande --help pour plus d'informations."
 esac

@@ -9,6 +9,9 @@ case "$commande" in
 	    if [ ! -f index.html ]
 	    then echo "Fichier manquant"
 	    else
+		if [ ! -d images ] || [ ! "$(ls -A images)" ]
+		then echo "Le répertoire images est vide ou n'existe pas"
+		else
 		if [ $(cat index.html | grep -o "id=\"images\"" | wc -l) -eq "0" ]
 		then echo "L'ID images n'existe pas dans index.html"
 		else
@@ -21,6 +24,7 @@ case "$commande" in
 		done
 		sed -i "/id=\"images\"/a $html_images" "$repertoire_cible/index.html"
 		echo "Site généré dans le répertoire $repertoire_cible"
+		fi
 		fi
 	    fi
 	fi;;
